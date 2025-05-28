@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, { ReactNode } from "react";
 import Social from "../ui/soical";
 import { IconType, IconBaseProps } from "react-icons";
 import { FiPhone, FiMapPin } from "react-icons/fi";
@@ -8,14 +8,14 @@ import { FaRegEnvelope, FaRegCircle } from "react-icons/fa6";
 interface LinkItem {
   label: string;
   href: string;
-  Icon?: IconType;
+  Icon?: ReactNode;
   Content?: string | string[];
 }
 
 interface FooterColumn {
   title: string;
   description?: string;
-  Icon?: IconType;
+  Icon?: ReactNode;
   links: LinkItem[];
 }
 
@@ -32,7 +32,7 @@ const footerColumns: FooterColumn[] = [
       {
         label: "Address",
         href: "#",
-        Icon: FiMapPin,
+        Icon:  FiMapPin,
         Content:
           "D-234(C&P), 4th Floor, Phase-8B, Sector-74, Sahibzada Ajit Singh Nagar, Punjab 140308",
       },

@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, HelpCircle } from 'lucide-react';
@@ -6,8 +7,12 @@ import { FaHome } from 'react-icons/fa';
 import { LuUser } from 'react-icons/lu';
 import { MdMiscellaneousServices } from 'react-icons/md';
 import { PiSuitcaseSimpleLight } from 'react-icons/pi';
+import { useState } from 'react';
+import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
 
 export default function Header() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const customNavItems: NavItem[] = [
     { label: 'Need support?', href: '/', icon: HelpCircle, secondaryTitle: 'Help & Support' },
     { label: '+91 123-456-7890', href: '/support', icon: Phone, secondaryTitle: 'Customer Care' },
@@ -24,30 +29,48 @@ export default function Header() {
   return (
     <>
       <header className="bg-background pt-6 pb-6">
-        <div className="container mx-auto flex justify-between items-center">
-          <h1 className="text-xl font-bold text-blue-600">
+        <div className="container mx-auto flex flex-col sm:flex-row sm:justify-between sm:items-center px-4">
+          <h1 className="text-xl font-bold text-blue-600 mb-4 sm:mb-0">
             <Link href="/">
               <Image src="/image/logo.svg" alt="MySite Logo" width={217} height={40} priority />
             </Link>
           </h1>
 
-          <Nav
-            items={customNavItems}
-            className="font-poppins font-medium"
-            title="Training Program"
-          />
+          {/* Hamburger button visible on small screens only */}
+          <button
+            onClick={() => setMobileMenuOpen((open) => !open)}
+            className="sm:hidden text-black text-2xl focus:outline-none"
+            aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          >
+            {mobileMenuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
+          </button>
+
+          {/* Custom Nav visible on md+ or if mobileMenuOpen on sm */}
+          <nav
+            className={`${
+              mobileMenuOpen ? 'block' : 'hidden'
+            } sm:flex sm:gap-6 font-poppins font-medium`}
+          >
+            <Nav items={customNavItems} title="Training Program" />
+          </nav>
         </div>
       </header>
 
-      <div className="w-full bg-white container mx-auto flex gap-2 pt-[49px] justify-center">
-        <Nav
-          items={NavMenu}
-          className="font-poppins font-medium justify-between w-full text-black bg-transparent"
-          title="Industrial Training"
-          secondaryTitle="Contact Us"
-        />
+      <div className="bg-white container mx-auto px-4">
+        {/* Main Nav Menu - hidden on sm unless mobileMenuOpen */}
+        <nav
+          className={`w-full flex flex-col gap-2 pt-[49px] text-black bg-transparent ${
+            mobileMenuOpen ? 'block' : 'hidden'
+          } sm:flex sm:flex-row sm:justify-center sm:gap-10`}
+        >
+          <Nav
+            items={NavMenu}
+            className="font-poppins font-medium justify-between w-full max-w-5xl"
+            title="Industrial Training"
+            secondaryTitle="Contact Us"
+          />
+        </nav>
       </div>
     </>
   );
 }
-    

@@ -65,7 +65,7 @@ export default function SimpleSlider() {
             <h2 className="font-poppins font-bold text-4xl leading-[46px]">
               {rest} <span className="text-main">{lastWord}</span>
             </h2>
-            <p className="mt-10 text-lg">{currentSlide.description}</p>
+            <p className="mt-10 text-lg h-[140px]">{currentSlide.description}</p>
 
             <div className="flex gap-4">
               <Button
