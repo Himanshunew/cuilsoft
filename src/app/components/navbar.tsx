@@ -1,53 +1,49 @@
 import Link from 'next/link';
 import Button from './ui/button';
 import cn from 'classnames';
+import React from 'react';
 
 export interface NavItem {
-    label: string;
-    href: string;
-    icon?: React.ElementType; secondaryTitle: string;
+  label: string;
+  href: string;
+  icon: React.ComponentType<any>;  // Changed here
+  secondaryTitle?: string;  
 }
 
 interface NavProps {
-    items: NavItem[];
-    className?: string;
-    title?: string; // add title prop
-    secondaryTitle?: string
+  items: NavItem[];
+  className?: string;
+  title?: string;
+  secondaryTitle?: string;
 }
 
 export default function Nav({ items, className, title, secondaryTitle }: NavProps) {
-    return (
-        <nav>
-            <ul
-                className={cn(
-                    'flex space-x-[54px] font-poppins font-medium items-center w-full',
-                    className
-                )}
-            >
-                {items.map((item, index) => (
-                    <li key={index} className="flex items-center gap-2">
-                        {item.icon && <item.icon size={18} />}
-                        <Link href={item.href}>{item.label}</Link>
-                    </li>
-                ))}
+  return (
+    <nav>
+      <ul
+        className={cn(
+          'flex space-x-[54px] font-poppins font-medium items-center w-full',
+          className
+        )}
+      >
+        {items.map((item, index) => (
+          <li key={index} className="flex items-center gap-2">
+            {item.icon && <item.icon size={18} />}
+            <Link href={item.href}>{item.label}</Link>
+          </li>
+        ))}
 
-                <li className='flex gap-6  items-center'>
-                    {
-                        secondaryTitle && <Button
-                            className=" font-poppins font-medium border border-main text-main flex items-center gap-2"
-                        >
-                            {secondaryTitle}
-                        </Button>
-                    }
-                    <Button
-                        className=" bg-main font-poppins font-medium text-white flex items-center gap-2"
-                    >
-                        {title}
-                    </Button>
-                    
-
-                </li>
-            </ul>
-        </nav>
-    );
+        <li className="flex gap-6 items-center">
+          {secondaryTitle && (
+            <Button className="font-poppins font-medium border border-main text-main flex items-center gap-2">
+              {secondaryTitle}
+            </Button>
+          )}
+          <Button className="bg-main font-poppins font-medium text-white flex items-center gap-2">
+            {title}
+          </Button>
+        </li>
+      </ul>
+    </nav>
+  );
 }

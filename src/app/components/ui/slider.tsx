@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 
 import React, { useState, useEffect } from 'react';
 
@@ -81,7 +82,7 @@ export default function SimpleSlider() {
           {/* Image Section */}
           <div className="w-1/2 h-full relative flex justify-center items-center">
             {currentSlide.imageSrc ? (
-              <img
+           <Image
                 src={currentSlide.imageSrc}
                 alt={`${currentSlide.title} image`}
                 className="pt-[120px]"

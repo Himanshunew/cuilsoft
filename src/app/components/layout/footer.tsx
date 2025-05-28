@@ -1,10 +1,25 @@
 import Image from "next/image";
 import React from "react";
 import Social from "../ui/soical";
+import { IconType, IconBaseProps } from "react-icons";
 import { FiPhone, FiMapPin } from "react-icons/fi";
 import { FaRegEnvelope, FaRegCircle } from "react-icons/fa6";
 
-const footerColumns = [
+interface LinkItem {
+  label: string;
+  href: string;
+  Icon?: IconType;
+  Content?: string | string[];
+}
+
+interface FooterColumn {
+  title: string;
+  description?: string;
+  Icon?: IconType;
+  links: LinkItem[];
+}
+
+const footerColumns: FooterColumn[] = [
   {
     title: "",
     description:
@@ -60,8 +75,6 @@ const footerColumns = [
   },
 ];
 
-
-
 export default function Footer() {
   return (
     <footer className="bg-black py-10 text-white">
@@ -83,15 +96,20 @@ export default function Footer() {
           {footerColumns.map(({ title, Icon, description, links }, idx) => (
             <div
               key={idx}
-              className={`${idx === 0
-                ? "w-[370px] flex items-center"
-                : "min-w-[230px] max-w-[220px] flex-1"
-                }`}
+              className={`${
+                idx === 0
+                  ? "w-[370px] flex items-center"
+                  : "min-w-[230px] max-w-[220px] flex-1"
+              }`}
             >
               {/* Title */}
               {title && (
                 <h2 className="flex items-center text-lg font-semibold mb-4 space-x-2">
-                  {Icon && <Icon className="text-main" size={17} />}
+                  {Icon &&
+                    React.createElement(Icon as React.ComponentType<IconBaseProps>, {
+                      className: "text-main",
+                      size: 17,
+                    })}
                   <span>{title}</span>
                 </h2>
               )}
@@ -106,13 +124,18 @@ export default function Footer() {
                 {links.map(({ label, href, Icon: LinkIcon, Content }, linkIdx) => (
                   <li key={linkIdx} className="mb-4">
                     <div className="flex items-center space-x-2">
-                      {LinkIcon && <LinkIcon className="text-main" size={17} />}
+                      {LinkIcon &&
+                        React.createElement(LinkIcon as React.ComponentType<IconBaseProps>, {
+                          className: "text-main",
+                          size: 17,
+                        })}
                       <a
                         href={href}
-                        className={`hover:underline font-medium ${["Address", "Phone", "Email"].includes(label)
-                          ? "text-white"
-                          : "text-[#9F9FA9]"
-                          }`}
+                        className={`hover:underline font-medium ${
+                          ["Address", "Phone", "Email"].includes(label)
+                            ? "text-white"
+                            : "text-[#9F9FA9]"
+                        }`}
                       >
                         {label}
                       </a>
