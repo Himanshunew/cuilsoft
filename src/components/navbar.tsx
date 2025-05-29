@@ -6,16 +6,17 @@ import React from 'react';
 export interface NavItem {
   label: string;
   href: string;
-  icon: React.ComponentType<any>;  // Changed here
-  secondaryTitle?: string;  
+  icon: React.ReactNode;
+  secondaryTitle?: string;
 }
 
 interface NavProps {
-  items: NavItem[];
+  
   className?: string;
   title?: string;
   secondaryTitle?: string;
 }
+
 
 export default function Nav({ items, className, title, secondaryTitle }: NavProps) {
   return (
@@ -26,12 +27,16 @@ export default function Nav({ items, className, title, secondaryTitle }: NavProp
           className
         )}
       >
-        {items.map((item, index) => (
-          <li key={index} className="flex items-center gap-2">
-            {item.icon && <item.icon size={18} />}
-            <Link href={item.href}>{item.label}</Link>
-          </li>
-        ))}
+        {items.map((item, index) => {
+          const Icon = item.icon;
+          return (
+            <li key={index} className="flex items-center gap-2">
+          {item.icon && <span className="inline-block">{item.icon}</span>}
+                
+              <Link href={item.href}>{item.label}</Link>
+            </li>
+          );
+        })}
 
         <li className="flex gap-6 items-center">
           {secondaryTitle && (

@@ -1,21 +1,22 @@
+import React from "react"; // ✅ Required for createElement
 import Image from "next/image";
-import React, { ReactNode } from "react";
-import Social from "../ui/soical";
 import { IconType, IconBaseProps } from "react-icons";
 import { FiPhone, FiMapPin } from "react-icons/fi";
 import { FaRegEnvelope, FaRegCircle } from "react-icons/fa6";
+import Social from "../ui/soical";
+
 
 interface LinkItem {
   label: string;
   href: string;
-  Icon?: ReactNode;
+  Icon?: IconType; // 
   Content?: string | string[];
 }
 
 interface FooterColumn {
   title: string;
   description?: string;
-  Icon?: ReactNode;
+  Icon?: IconType; // 
   links: LinkItem[];
 }
 

@@ -1,23 +1,37 @@
 'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
-import { Phone, HelpCircle } from 'lucide-react';
-import Nav, { NavItem } from '../navbar';
 import { FaHome } from 'react-icons/fa';
 import { LuUser } from 'react-icons/lu';
 import { MdMiscellaneousServices } from 'react-icons/md';
 import { PiSuitcaseSimpleLight } from 'react-icons/pi';
 import { useState } from 'react';
 import { HiOutlineMenu, HiOutlineX } from 'react-icons/hi';
+import type { IconType } from 'react-icons';
+import { FaPhoneAlt, FaQuestionCircle } from 'react-icons/fa';
+import Nav from '../navbar';
+
+// Cast react-icons to React.FC with SVG props
+const MenuIcon = HiOutlineMenu as React.FC<React.SVGProps<SVGSVGElement>>;
+const CloseIcon = HiOutlineX as React.FC<React.SVGProps<SVGSVGElement>>;
+
+export interface NavItem {
+  label: string;
+  href: string;
+  icon: IconType;
+  secondaryTitle?: string;
+}
+
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const customNavItems: NavItem[] = [
-    { label: 'Need support?', href: '/', icon: HelpCircle, secondaryTitle: 'Help & Support' },
-    { label: '+91 123-456-7890', href: '/support', icon: Phone, secondaryTitle: 'Customer Care' },
-    { label: '+91 987-654-3210', href: '/sales', icon: Phone, secondaryTitle: 'Sales' },
-  ];
+const customNavItems: NavItem[] = [
+  { label: 'Need support?', href: '/', icon: FaQuestionCircle, secondaryTitle: 'Help & Support' },
+  { label: '+91 123-456-7890', href: '/support', icon: FaPhoneAlt, secondaryTitle: 'Customer Care' },
+  { label: '+91 987-654-3210', href: '/sales', icon: FaPhoneAlt, secondaryTitle: 'Sales' },
+];
 
   const NavMenu: NavItem[] = [
     { label: 'Home', href: '/', icon: FaHome },
@@ -42,7 +56,7 @@ export default function Header() {
             className="sm:hidden text-black text-2xl focus:outline-none"
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
-            {mobileMenuOpen ? <HiOutlineX /> : <HiOutlineMenu />}
+            {mobileMenuOpen ? <CloseIcon /> : <MenuIcon />}
           </button>
 
           {/* Custom Nav visible on md+ or if mobileMenuOpen on sm */}
@@ -74,3 +88,4 @@ export default function Header() {
     </>
   );
 }
+
