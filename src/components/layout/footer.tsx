@@ -95,17 +95,10 @@ export default function Footer() {
           {footerColumns.map(({ title, description, links }, idx) => (
             <div
               key={idx}
-<<<<<<< HEAD
-             className={`${idx === 0
-  ? "w-[370px]"
-  : "min-w-[230px] max-w-[220px] flex-1"
-}`}
-=======
               className={`${idx === 0
                 ? "w-[370px]"
                 : "min-w-[230px] max-w-[220px] flex-1"
                 }`}
->>>>>>> 99ac616f59dc19fce20f942d8ad2dae291ac1f37
             >
               {/* Title */}
               {title && (
