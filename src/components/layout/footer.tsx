@@ -96,7 +96,7 @@ export default function Footer() {
             <div
               key={idx}
               className={`${idx === 0
-                ? "w-[370px] flex items-center"
+                ? "w-[370px]"
                 : "min-w-[230px] max-w-[220px] flex-1"
                 }`}
             >
