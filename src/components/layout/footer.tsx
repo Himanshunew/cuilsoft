@@ -1,3 +1,5 @@
+'use client';
+
 import React from "react";
 import Image from "next/image";
 import { FiPhone, FiMapPin } from "react-icons/fi";
@@ -8,16 +10,14 @@ import Link from "next/link";
 interface LinkItem {
   label: string;
   href: string;
-  Icon?: React.ReactNode;
+  Icon?: React.ComponentType<{ className?: string; size?: number }>;
   Content?: string | string[];
-
 }
 
 interface FooterColumn {
   title: string;
   description?: string;
   links: LinkItem[];
-  LinkIcon?: React.ReactNode;
 }
 
 const footerColumns: FooterColumn[] = [
@@ -33,27 +33,26 @@ const footerColumns: FooterColumn[] = [
       {
         label: "Address",
         href: "#",
-        Icon: <FiMapPin />,
+        Icon: FiMapPin,
         Content:
           "D-234(C&P), 4th Floor, Phase-8B, Sector-74, Sahibzada Ajit Singh Nagar, Punjab 140308",
       },
       {
         label: "Phone",
         href: "#",
-        Icon: <FiPhone />,
+        Icon: FiPhone,
         Content: ["+91-890-100-1970", "+91-947-843-5545"],
       },
       {
         label: "Email",
         href: "#",
-        Icon: <FaRegEnvelope />,
+        Icon: FaRegEnvelope,
         Content: "contact@cuilsoft.com",
       },
     ],
   },
   {
     title: "SITE MAP",
-
     links: [
       { label: "Home", href: "#" },
       { label: "Who We Are", href: "#" },
@@ -65,7 +64,6 @@ const footerColumns: FooterColumn[] = [
   },
   {
     title: "Our Services",
-
     links: [
       { label: "Web Development", href: "#" },
       { label: "E-commerce Development", href: "#" },
@@ -105,7 +103,6 @@ export default function Footer() {
               {/* Title */}
               {title && (
                 <h2 className="flex items-center text-lg font-semibold mb-4 space-x-2">
-                  {/* <IconBase  /> */}
                   <span>{title}</span>
                 </h2>
               )}
@@ -117,20 +114,19 @@ export default function Footer() {
 
               {/* Links */}
               <ul>
-                {links.map(({ label, href, Icon: LinkIcon, Content }, linkIdx) => (
+                {links.map(({ label, href, Icon, Content }, linkIdx) => (
                   <li key={linkIdx} className="mb-4">
                     <div className="flex items-center space-x-2">
-                      {LinkIcon && (
-                        <Link
-                          href={href}
-                          className={`hover:underline font-medium ${["Address", "Phone", "Email"].includes(label)
-                            ? "text-white"
-                            : "text-[#9F9FA9]"
-                            }`}
-                        >
-                          {label}
-                        </Link>
-                      )}
+                      {Icon && <Icon className="text-main" size={17} />}
+                      <Link
+                        href={href}
+                        className={`hover:underline font-medium ${["Address", "Phone", "Email"].includes(label)
+                          ? "text-white"
+                          : "text-[#9F9FA9]"
+                          }`}
+                      >
+                        {label}
+                      </Link>
                     </div>
 
                     {/* Content */}
