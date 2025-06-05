@@ -6,6 +6,10 @@ import Testimonials from "@/components/testimonials";
 import SimpleSlider from "@/components/ui/slider";
 import Form from "@/form";
 import '../globals.css'; 
+// import Whychooes from "@/Whychooes";
+import Project from "@/project";
+// import TestimonialSelector from "@/components/ui/testimonals";
+import Technology from "@/technology";
 
 export default function Home() {
   return (
@@ -13,6 +17,10 @@ export default function Home() {
       <Header />
        <SimpleSlider /> 
        <Services />
+       {/* <Whychooes /> */}
+       <Technology />
+       <Project />
+     
             <Testimonials />
        <Form />
   

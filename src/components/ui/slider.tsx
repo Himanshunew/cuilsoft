@@ -1,15 +1,26 @@
 'use client';
 import Image from "next/image";
-
 import React, { useState, useEffect } from 'react';
 
-const Button = ({ title, className, ...props }) => (
+interface Slide {
+  id: number;
+  title: string;
+  description: string;
+  imageSrc?: string;
+}
+
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  title: string;
+  className?: string;
+}
+
+const Button: React.FC<ButtonProps> = ({ title, className, ...props }) => (
   <button className={className} {...props}>
     {title}
   </button>
 );
 
-const slides = [
+const slides: Slide[] = [
   {
     id: 1,
     title: 'We Are All About Creativity & Innovation',
@@ -34,24 +45,19 @@ const slides = [
 ];
 
 export default function SimpleSlider() {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState<number>(0);
 
   const currentSlide = slides[current] ?? slides[0];
   const title = currentSlide.title;
   const words = title.split(' ');
-  const lastWord = words.pop();
+  const lastWord = words.pop() ?? '';
   const rest = words.join(' ');
-
-  const prevSlide = () =>
-    setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
-  const nextSlide = () =>
-    setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
 
   // Autoplay effect
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
-    }, 4000); // 5000ms = 5 seconds
+    }, 4000); // 4000ms = 4 seconds
 
     return () => clearInterval(interval); // Clean up on unmount
   }, []);
@@ -82,7 +88,7 @@ export default function SimpleSlider() {
           {/* Image Section */}
           <div className="w-1/2 h-full relative flex justify-center items-center">
             {currentSlide.imageSrc ? (
-           <Image
+              <Image
                 src={currentSlide.imageSrc}
                 alt={`${currentSlide.title} image`}
                 className="pt-[120px]"
@@ -96,22 +102,18 @@ export default function SimpleSlider() {
         </div>
       </div>
 
-      {/* Arrows */}
-      <div className="flex justify-center space-x-4 mt-6">
-        <button
-          onClick={prevSlide}
-          className="px-4 py-2 bg-main text-white rounded"
-          aria-label="Previous Slide"
-        >
-          Prev
-        </button>
-        <button
-          onClick={nextSlide}
-          className="px-4 py-2 bg-main text-white rounded"
-          aria-label="Next Slide"
-        >
-          Next
-        </button>
+      {/* Dots Only – No Arrows */}
+      <div className="flex justify-center mt-6 space-x-3">
+        {slides.map((slide, index) => (
+          <button
+            key={slide.id}
+            onClick={() => setCurrent(index)}
+            aria-label={`Slide ${index + 1}`}
+            aria-current={current === index ? "true" : "false"}
+            className={`w-3 h-3 rounded-full transition-all duration-300 ${current === index ? "bg-main scale-110" : "bg-gray-300"
+              }`}
+          ></button>
+        ))}
       </div>
 
       {/* Slide Dots */}
@@ -120,9 +122,8 @@ export default function SimpleSlider() {
           <button
             key={slide.id}
             onClick={() => setCurrent(index)}
-            className={`w-4 h-4 rounded-full transition-colors cursor-pointer ${
-              current === index ? 'bg-white' : 'bg-white/50'
-            }`}
+            className={`w-4 h-4 rounded-full transition-colors cursor-pointer ${current === index ? 'bg-white' : 'bg-white/50'
+              }`}
             aria-label={`Go to slide ${index + 1}`}
           />
         ))}

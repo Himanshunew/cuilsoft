@@ -16,7 +16,7 @@ import Nav from '../navbar';
 const MenuIcon = HiOutlineMenu as React.FC<React.SVGProps<SVGSVGElement>>;
 const CloseIcon = HiOutlineX as React.FC<React.SVGProps<SVGSVGElement>>;
 
-export interface NavItem {
+export interface NavItems {
   label: string;
   href: string;
   icon: IconType;
@@ -27,13 +27,13 @@ export interface NavItem {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-const customNavItems: NavItem[] = [
-  { label: 'Need support?', href: '/', icon: FaQuestionCircle, secondaryTitle: 'Help & Support' },
-  { label: '+91 123-456-7890', href: '/support', icon: FaPhoneAlt, secondaryTitle: 'Customer Care' },
-  { label: '+91 987-654-3210', href: '/sales', icon: FaPhoneAlt, secondaryTitle: 'Sales' },
-];
+  const customNavItems: NavItems[] = [
+    { label: 'Need support?', href: '/', icon: FaQuestionCircle, secondaryTitle: 'Help & Support' },
+    { label: '+91 123-456-7890', href: '/support', icon: FaPhoneAlt, secondaryTitle: 'Customer Care' },
+    { label: '+91 987-654-3210', href: '/sales', icon: FaPhoneAlt, secondaryTitle: 'Sales' },
+  ];
 
-  const NavMenu: NavItem[] = [
+  const NavMenu: NavItems[] = [
     { label: 'Home', href: '/', icon: FaHome },
     { label: 'Who We Are', href: '/support', icon: LuUser },
     { label: 'Services', href: '/sales', icon: MdMiscellaneousServices },
@@ -61,9 +61,8 @@ const customNavItems: NavItem[] = [
 
           {/* Custom Nav visible on md+ or if mobileMenuOpen on sm */}
           <nav
-            className={`${
-              mobileMenuOpen ? 'block' : 'hidden'
-            } sm:flex sm:gap-6 font-poppins font-medium`}
+            className={`${mobileMenuOpen ? 'block' : 'hidden'
+              } sm:flex sm:gap-6 font-poppins font-medium`}
           >
             <Nav items={customNavItems} title="Training Program" />
           </nav>
@@ -73,9 +72,8 @@ const customNavItems: NavItem[] = [
       <div className="bg-white container mx-auto px-4">
         {/* Main Nav Menu - hidden on sm unless mobileMenuOpen */}
         <nav
-          className={`w-full flex flex-col gap-2 pt-[49px] text-black bg-transparent ${
-            mobileMenuOpen ? 'block' : 'hidden'
-          } sm:flex sm:flex-row sm:justify-center sm:gap-10`}
+          className={`w-full flex flex-col gap-2 pt-[49px] text-black bg-transparent ${mobileMenuOpen ? 'block' : 'hidden'
+            } sm:flex sm:flex-row sm:justify-center sm:gap-10`}
         >
           <Nav
             items={NavMenu}

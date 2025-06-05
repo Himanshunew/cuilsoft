@@ -2,10 +2,24 @@ import React from 'react'
 import Heading from './ui/heading'
 import Accordion from './ui/Accordion'
 
+// ✅ Interface for FAQ item
+interface FAQItem {
+  title: string;
+  content: string;
+}
+
+interface HeadingProps {
+  title: string;
+  subheading?: string;
+  description?: string;
+  titleClassName?: string;
+  subheadingClassName?: string;
+  descriptionClassName?: string;
+}
 
 
-
-const faqData = [
+// ✅ FAQ Data with type
+const faqData: FAQItem[] = [
   {
     title: 'What services do you offer?',
     content: 'We offer web development, app development, digital marketing, and more.'
@@ -19,35 +33,38 @@ const faqData = [
     content: 'Yes, we offer maintenance and support after the project is live.'
   },
   {
-    title: 'Do you provide support after delivery?',
-    content: 'Yes, we offer maintenance and support after the project is live.'
+    title: 'What is your pricing model?',
+    content: 'Our pricing depends on project scope and requirements. Contact us for a quote.'
   },
   {
-    title: 'Do you provide support after delivery?',
-    content: 'Yes, we offer maintenance and support after the project is live.'
+    title: 'Can you redesign my existing website?',
+    content: 'Yes, we specialize in both redesigning and building websites from scratch.'
   },
   {
-    title: 'Do you provide support after delivery?',
-    content: 'Yes, we offer maintenance and support after the project is live.'
+    title: 'Do you offer SEO services?',
+    content: 'Absolutely. We provide on-page and off-page SEO services.'
   },
   {
-    title: 'Do you provide support after delivery?',
-    content: 'Yes, we offer maintenance and support after the project is live.'
+    title: 'Is hosting included?',
+    content: 'We offer hosting guidance or can include hosting in our full-service packages.'
   },
-    {
-    title: 'Do you provide support after delivery?',
-    content: 'Yes, we offer maintenance and support after the project is live.'
+  {
+    title: 'What technologies do you use?',
+    content: 'We use modern technologies like React, Node.js, Laravel, WordPress, and more.'
   }
 ];
 
+// ✅ FAQ Component
 export default function Faq() {
   return (
-  
-<div className='pb-[100px]'>
-      <Heading title="FREQUENTLY ASKED QUESTIONS"  subheading={null}   description={null} titleClassName="text-black text-center pb-[60px]"/>
+    <div className='pb-[100px]'>
+      <Heading 
+        title="FREQUENTLY ASKED QUESTIONS" 
+        titleClassName="text-black text-center" 
+      />
 
-        <div className="space-y-4">
-      {faqData.map((faq, index) => (
+      <div className="space-y-4">
+        {faqData.map((faq: FAQItem, index: number) => (
           <Accordion
             key={index}
             number={index + 1}
@@ -58,9 +75,7 @@ export default function Faq() {
             contentClassName="text-gray-700"
           />
         ))}
+      </div>
     </div>
-
-   </div>
-   
   )
 }

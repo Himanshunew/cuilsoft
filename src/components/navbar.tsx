@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Button from './ui/button';
 import cn from 'classnames';
-import React from 'react';
+import React, { ReactNode } from 'react';
+import { NavItems } from './layout/header';
 
 export interface NavItem {
   label: string;
@@ -11,7 +12,7 @@ export interface NavItem {
 }
 
 interface NavProps {
-  
+  items: NavItems[];
   className?: string;
   title?: string;
   secondaryTitle?: string;
@@ -31,7 +32,7 @@ export default function Nav({ items, className, title, secondaryTitle }: NavProp
           const Icon = item.icon;
           return (
             <li key={index} className="flex items-center gap-2">
-          {item.icon && <span className="inline-block">{item.icon}</span>}
+          {item.icon && <span className="inline-block">{item.icon as any}</span>}
                 
               <Link href={item.href}>{item.label}</Link>
             </li>

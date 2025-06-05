@@ -23,7 +23,7 @@ export default function Card({
   descriptionClassName = "",
 }: CardProps) {
   return (
-    <div className={`w-full rounded overflow-hidden bg-white p-4 ${containerClassName}`}>
+    <div className={`rounded overflow-hidden bg-white mx-auto ${containerClassName}`}>
       {imageSrc && (
         <Image
           className={`object-cover rounded-md ${imageClassName}`}
@@ -35,7 +35,7 @@ export default function Card({
         />
       )}
       <div className="mt-4">
-        <h3 className={`text-xl font-semibold font-poppins mb-2 ${titleClassName}`}>
+        <h3 className={`text-xl font-semibold font-poppins  ${titleClassName}`}>
           {title}
         </h3>
         <p className={`text-gray-600 font-poppins text-sm ${descriptionClassName}`}>

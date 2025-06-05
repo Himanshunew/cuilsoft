@@ -40,7 +40,6 @@ export default function Services() {
                 subheading="OUR SERVICES"
                 title="We Offer a Range of Digital Services"
                 description="Our purpose is to provide innovative IT and business solutions that exceed our customers’ expectations and provide the benefits they need. We don’t just help but we provide solutions that suit your need."
-                wrapperClassName="mb-6"
                 subheadingClassName="pt-[100px] text-center font-poppins font-semibold text-[24px] leading-[16.41px] tracking-[0] text-main"
                 titleClassName="pt-5 text-center font-poppins font-semibold text-[24px] leading-[16.41px] tracking-[0] text-black"
                 descriptionClassName="pt-5 text-center font-poppins font-normal text-[16px] leading-[22px] tracking-[0] text-[#9F9FA9] w-[862px] mx-auto pb-[53px]"
