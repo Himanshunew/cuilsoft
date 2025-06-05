@@ -5,27 +5,34 @@ import Services from "@/components/services";
 import Testimonials from "@/components/testimonials";
 import SimpleSlider from "@/components/ui/slider";
 import Form from "@/form";
-import '../globals.css'; 
+import '../globals.css';
 // import Whychooes from "@/Whychooes";
 import Project from "@/project";
 // import TestimonialSelector from "@/components/ui/testimonals";
-import Technology from "@/technology";
+import Technology from "../technology";
+import IndustriesSections from "../IndustriesSection";
+
+
+
 
 export default function Home() {
   return (
     <>
       <Header />
-       <SimpleSlider /> 
-       <Services />
-       {/* <Whychooes /> */}
-       <Technology />
-       <Project />
-     
-            <Testimonials />
-       <Form />
-  
-       <Faq />
-       <Footer />
+      <SimpleSlider />
+      <Services />
+ 
+      {/* <Whychooes /> */}
+      
+      <Technology />
+           <IndustriesSections />
+      <Project />
+
+      <Testimonials />
+      <Form />
+
+      <Faq />
+      <Footer />
     </>
   );
 }

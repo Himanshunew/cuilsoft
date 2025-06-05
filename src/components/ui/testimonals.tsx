@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 import React, { useState } from "react";
 
 const users = [
@@ -72,12 +73,14 @@ export default function TestimonialSelector() {
 
     return (
       <div key={user.id} className={`w-1/6 flex justify-center ${randomMargin}`}>
-        <img
-          src={user.image}
-          alt={user.name}
-          className={`w-[85px] h-[85px] rounded-full cursor-pointer border-4 transition-all
-            ${selectedUser.id === user.id ? "border-blue-500" : "border-transparent"}
-          `}
+      <Image
+  src={user.image}
+  alt={user.name}
+  className={`w-[85px] h-[85px] rounded-full cursor-pointer border-4 transition-all
+    ${selectedUser.id === user.id ? "border-blue-500" : "border-transparent"}
+  `}
+width={100}
+height={100}
           onClick={() => setSelectedUser(user)}
         />
       </div>

@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import React from 'react';
 
 interface IconBoxProps {
@@ -10,7 +11,7 @@ export default function IconBox({title, subtitle } : IconBoxProps) {
     <div className="flex bg-[#FFA42B] rounded w-[356px] p-4 gap-2.5 align-center ">
       {/* Icon */}
       <div className="text-3xl text-white ">
-             <img src=" /image/rate 2.png" width={40} height={40} alt="icon"  className='bg-white rounded p-1'/>
+             <Image src=" /image/rate 2.png" width={40} height={40} alt="icon"  className='bg-white rounded p-1'/>
       </div>
 
       {/* Text */}

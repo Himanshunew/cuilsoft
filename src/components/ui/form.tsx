@@ -12,13 +12,14 @@ const CustomForm = () => {
     projectDetails: ''
   });
 
-  const handleChange = (e : any) => {
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-    console.log('Change:', name, value);  // Debug input changes
+    console.log('Change:', name, value);
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e : any) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('Form Submitted:', formData);  // Debug submit data
     // Here you can add further submit logic like API call

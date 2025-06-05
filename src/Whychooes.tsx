@@ -4,33 +4,32 @@ import Image from 'next/image';
 import IconBox from './components/ui/iconbox';
 import { FaShieldAlt } from 'react-icons/fa';
 import { FaBolt, FaUsers } from 'react-icons/fa6';
-import { IconType } from 'react-icons'; // Add this
 
 
 interface IconBoxItem {
-  icon: IconType;
   title: string;
   subtitle: string;
+  Icon : React.ReactNode
 }
 
 const IconBoxData: IconBoxItem[] = [
   {
-    icon: FaShieldAlt,
+    Icon: <FaShieldAlt/>,
     title: "Clients Served",
     subtitle: "25+",
   },
   {
-    icon: FaBolt,
+    Icon: <FaBolt/>,
     title: "Completed Projects",
     subtitle: "45+",
   },
   {
-    icon: FaUsers,
+    Icon: <FaUsers />,
     title: "Years Of Going",
     subtitle: "3+",
   },
   {
-    icon: FaUsers,
+    Icon: <FaUsers />,
     title: "Satisfaction Guaranteed",
     subtitle: "100%",
   },
@@ -51,7 +50,7 @@ export default function WhyChoose() {
             {IconBoxData.map((item, index) => (
               <IconBox
                 key={index}
-                Icon={item.icon}
+                // icon  ={item.icon}
                 title={item.title}
                 subtitle={item.subtitle}
               />

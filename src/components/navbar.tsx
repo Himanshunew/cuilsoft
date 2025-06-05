@@ -1,13 +1,12 @@
 import Link from 'next/link';
 import Button from './ui/button';
 import cn from 'classnames';
-import React, { ReactNode } from 'react';
 import { NavItems } from './layout/header';
 
 export interface NavItem {
   label: string;
   href: string;
-  icon: React.ReactNode;
+  // icon: React.ReactNode;
   secondaryTitle?: string;
 }
 
@@ -16,6 +15,7 @@ interface NavProps {
   className?: string;
   title?: string;
   secondaryTitle?: string;
+  // Icon?: React.ReactNode;
 }
 
 
@@ -29,10 +29,9 @@ export default function Nav({ items, className, title, secondaryTitle }: NavProp
         )}
       >
         {items.map((item, index) => {
-          const Icon = item.icon;
           return (
             <li key={index} className="flex items-center gap-2">
-          {item.icon && <span className="inline-block">{item.icon as any}</span>}
+          {/* {item.icon && <span className="inline-block">{item.icon as any}</span>} */}
                 
               <Link href={item.href}>{item.label}</Link>
             </li>
